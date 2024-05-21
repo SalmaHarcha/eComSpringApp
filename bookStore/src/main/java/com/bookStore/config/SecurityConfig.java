@@ -36,7 +36,7 @@ public class SecurityConfig {
                 .and()
                 .httpBasic()
                 .and()
-                .headers().frameOptions().disable(); // Permet l'accès à la console H2
+                .headers().frameOptions().disable();
 
         return http.build();
     }
