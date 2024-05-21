@@ -2,13 +2,10 @@ package com.bookStore.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -25,6 +22,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/mylist/**", "/editBook/**", "/deleteBook/**", "/book_details/**", "/available_books/**").authenticated()
                 .antMatchers("/", "/webjars/**", "/login", "/logout").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -36,11 +34,12 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/")
                 .permitAll()
                 .and()
-                .httpBasic();
+                .httpBasic()
+                .and()
+                .headers().frameOptions().disable(); // Permet l'accès à la console H2
 
         return http.build();
     }
-
 
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
