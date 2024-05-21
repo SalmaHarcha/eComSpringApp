@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Book Store</title>
+    <script src="https://kit.fontawesome.com/0faddc1af8.js" crossorigin="anonymous"></script>
+
+    <style>
+
+        body {
+            background-image: url('/images/img.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+
+</head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .payment-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .payment-form h2 {
+            margin-bottom: 20px;
+        }
+        .payment-form .form-group {
+            margin-bottom: 15px;
+        }
+        .payment-form .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .payment-form .form-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .payment-form .form-group input[type="submit"] {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .payment-form .form-group input[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+<div class="payment-form">
+    <h2>Validation de Paiement</h2>
+    <form action="/process_payment" method="post">
+        <div class="form-group">
+            <label for="card-name">Nom complet</label>
+            <input type="text" id="card-name" name="card-name" required>
+        </div>
+        <div class="form-group">
+            <label for="card-number">Numéro de Carte</label>
+            <input type="text" id="card-number" name="card-number" required>
+        </div>
+        <div class="form-group">
+            <label for="expiry-date">Date d'Expiration</label>
+            <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/AA" required>
+        </div>
+        <div class="form-group">
+            <label for="billing-address">Adresse de Livraison</label>
+            <input type="text" id="billing-address" name="billing-address" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Valider le Paiement">
+        </div>
+    </form>
+    <div class="center">
+        <br>
+
+        <center>
+        <p>Or continue with PayPal</p>
+        </center>
+
+    </div>
+    <form action="https://www.paypal.com/signin" method="post">
+        <input type="hidden" name="return" value="home.html">
+        <input type="hidden" name="cancel_return" value="home.html">
+
+        <center>
+            <button type="submit" class="btn btn-outline-info btn-block waves-effect waves-light">Buy</button>
+        </center>
+    </form>
+</div>
+</body>
+</html>
